@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<robot name="quadruped">
+
+  <!-- 定义材质 -->
+  <material name="grey">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+
+  <!-- 定义身体链接 -->
+  <link name="body">
+    <visual>
+      <geometry>
+        <box size="0.5 0.3 0.2"/>  <!-- 身体的视觉形状 -->
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.3 0.2"/>  <!-- 身体的碰撞形状 -->
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>  <!-- 身体的质量 -->
+      <inertia ixx="0.1" iyy="0.1" izz="0.1"/>  <!-- 身体的惯性矩阵 -->
+    </inertial>
+  </link>
+
+  <!-- 定义第一条腿 -->
+  <link name="leg1">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>  <!-- 腿部的视觉形状 -->
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>  <!-- 腿部的碰撞形状 -->
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>  <!-- 腿部的质量 -->
+      <inertia ixx="0.001" iyy="0.001" izz="0.001"/>  <!-- 腿部的惯性矩阵 -->
+    </inertial>
+  </link>
+
+  <!-- 舵机1连接 -->
+<joint name="joint_leg1" type="revolute">
+    <parent link="body"/>
+    <child link="leg1"/>
+    <origin xyz="0.25 0.15 -0.1"/>  <!-- Adjusted connection position -->
+    <axis xyz="0 1 0"/>  <!-- Axis of rotation (if necessary) -->
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1"/>  <!-- Joint limits -->
+</joint>
+
+  <!-- 定义第二条腿 -->
+  <link name="leg2">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <!-- 舵机2连接 -->
+<joint name="joint_leg2" type="revolute">
+    <parent link="body"/>
+    <child link="leg2"/>
+    <origin xyz="0.35 -0.15 -0.1"/>  <!-- Adjusted connection position -->
+    <axis xyz="0 1 0"/>  <!-- Axis of rotation (if necessary) -->
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1"/>  <!-- Joint limits -->
+</joint>
+
+
+  <!-- 定义第三条腿 -->
+  <link name="leg3">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <!-- 舵机3连接 -->
+<joint name="joint_leg3" type="revolute">
+    <parent link="body"/>
+    <child link="leg3"/>
+    <origin xyz="-0.35 0.15 -0.1"/>  <!-- Adjusted connection position -->
+    <axis xyz="0 1 0"/>  <!-- Axis of rotation (if necessary) -->
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1"/>  <!-- Joint limits -->
+</joint>
+
+  <!-- 定义第四条腿 -->
+  <link name="leg4">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <!-- 舵机4连接 -->
+<joint name="joint_leg4" type="revolute">
+    <parent link="body"/>
+    <child link="leg4"/>
+    <origin xyz="-0.35 -0.15 -0.1"/>  <!-- Adjusted connection position -->
+    <axis xyz="0 1 0"/>  <!-- Axis of rotation (if necessary) -->
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1"/>  <!-- Joint limits -->
+</joint>
+
+
+
+  <!-- 定义碰撞和摩擦 -->
+  <gazebo>
+    <mu1>0.5</mu1>  <!-- 摩擦系数 -->
+    <mu2>0.5</mu2>  <!-- 摩擦系数 -->
+    <selfCollide>true</selfCollide>  <!-- 允许自碰撞 -->
+    <maxContacts>20</maxContacts>
+  </gazebo>
+
+</robot>
